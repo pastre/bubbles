@@ -4,7 +4,7 @@ import UIKit
 import AVFoundation
 import CoreAudio
 
-public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, OptionViewDelegate, PhotoDelegate {
+public class BubblesView: UIViewController, ARSCNViewDelegate, ARSessionDelegate, OptionViewDelegate, PhotoDelegate {
     
     // ARView stuff
     let session = ARSession()
@@ -17,10 +17,10 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     var detectingLabel: UILabel!
     
     // This is in order to play the pop sound
-    //    let popSound = URL(fileURLWithPath: Bundle.main.path(forResource: "pop", ofType: "mp3")!)
+//    let popSound = URL(fileURLWithPath: Bundle.main.path(forResource: "pop", ofType: "mp3")!)
     var audioPlayer: AVAudioPlayer!
     
-    
+
     // This is in order to use the mic
     var recorder: AVAudioRecorder!
     let LEVEL_THRESHOLD: Float = -20.0
@@ -48,21 +48,21 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         initMicrophone() // Inicializa o microfone para detectar o sopro
         sceneView.delegate = self
         sceneView.session = session
-        
+
         bubbleCounter = 0
-        
+
         sceneView.session.delegate = self
         sceneView.autoenablesDefaultLighting = true
-        
+
         photoView.delegate = self
         
         self.view = sceneView
         self.setupUI()
         self.setUpSceneView()
         
-        //        self.spawnBubblePopParticle(spawnAt: SCNVector3(0, 0, 0), withColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+//        self.spawnBubblePopParticle(spawnAt: SCNVector3(0, 0, 0), withColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
     }
-    
+
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
         guard let frame = self.sceneView.session.currentFrame else {
@@ -93,7 +93,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     func onCameraPressed() {
         print("Tirando foto na GameScene")
         let pic = self.sceneView.snapshot()
-        //        self.goToPhotoView(image: pic)
+//        self.goToPhotoView(image: pic)
     }
     
     func onOptionChanged(newOption: String) {
@@ -144,12 +144,12 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         // coloca as imagens nas views
         self.view.addSubview(bubbleBlowerView)
         self.view.addSubview(colorPickerView)
-        //        self.view.addSubview(detectingLabel)
-        //        self.view.addSubview(debugLabel)
+//        self.view.addSubview(detectingLabel)
+//        self.view.addSubview(debugLabel)
         self.view.addSubview(optionsView)
-        //        self.view.addSubview(optionsView)
+//        self.view.addSubview(optionsView)
         
-        //        self.view.addSubview(self.segmentControl)
+//        self.view.addSubview(self.segmentControl)
         // Configura as constrains do colorPicker
         colorPickerView.translatesAutoresizingMaskIntoConstraints = false
         colorPickerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2).isActive = true
@@ -164,7 +164,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         bubbleBlowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         bubbleBlowerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
         
-        
+    
         // Configura as contrains do menu de opcoes
         optionsView.translatesAutoresizingMaskIntoConstraints = false
         optionsView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -2).isActive = true
@@ -176,7 +176,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         
     }
     
-    
+
     func goToPhotoView(image toDisplay: UIImage){
         self.photoView.image = toDisplay
         self.view = self.photoView
@@ -225,7 +225,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let newBubble = Bubble(color: self.currentColor)
         newBubble.position = position
         newBubble.scale = SCNVector3(1,1,1) * floatBetween(0.6, and: 1)
-        //        self.debugLabel.text = "\(self.currentColor.redValue), \(self.currentColor.greenValue), \(self.currentColor.blueValue), "
+//        self.debugLabel.text = "\(self.currentColor.redValue), \(self.currentColor.greenValue), \(self.currentColor.blueValue), "
         newBubble.setColor(newColor: self.currentColor)
         
         let firstVector = dir.normalized() * 0.5 + SCNVector3(0,0.15,0)
@@ -242,7 +242,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             newBubble.runAction(SCNAction.fadeOut(duration: 0), completionHandler: {
                 print("Morri")
                 let moved = newBubble.position + firstVector + secondVector
-                //                self.playPop()
+//                self.playPop()
                 self.spawnBubblePopParticle(spawnAt: moved, withColor: self.currentColor)
                 newBubble.removeFromParentNode()
             })
@@ -292,7 +292,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         if self.currentState == "touch"{
             spawnBubble()
         }
-        
+
     }
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -312,7 +312,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     @objc func takePic(){
         print("Taking picture")
-        //
+//
         let pic = self.sceneView.snapshot()
         print("Loaded pic")
         UIImageWriteToSavedPhotosAlbum(pic, nil, nil, nil)
@@ -320,17 +320,17 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func playPop(){
-        //        print("Played pop!")
-        ////        canRecord = false;
-        //        do{
-        //            try AVAudioSession.sharedInstance().setCategory(.playback , mode: .default)
-        //
-        //            audioPlayer = try AVAudioPlayer(contentsOf: popSound)
-        //            audioPlayer.play()
-        //        }catch let error  {
-        //            print("AI IRMAO DEU RUIM \(error)")
-        //        }
-        //        canRecord = true;
+//        print("Played pop!")
+////        canRecord = false;
+//        do{
+//            try AVAudioSession.sharedInstance().setCategory(.playback , mode: .default)
+//            
+//            audioPlayer = try AVAudioPlayer(contentsOf: popSound)
+//            audioPlayer.play()
+//        }catch let error  {
+//            print("AI IRMAO DEU RUIM \(error)")
+//        }
+//        canRecord = true;
     }
     func getNewPosition() -> (SCNVector3) { // (direction, position)
         if let frame = self.sceneView.session.currentFrame {
@@ -351,7 +351,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             spawnBubble()
         }
         
-        //        debugLabel.text = "\(level)"
+//        debugLabel.text = "\(level)"
     }
     
     
@@ -362,5 +362,4 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     //
 }
-
 
