@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		477D0B206405D3671158519D /* Pods_Bubbles_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788A3B5A627B8616D380F0B /* Pods_Bubbles_App.framework */; };
+		E883781D224FA60A003737C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E883781C224FA60A003737C0 /* GoogleService-Info.plist */; };
 		E8CDC1A9224EBA96006526EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1A8224EBA96006526EA /* AppDelegate.swift */; };
 		E8CDC1AB224EBA96006526EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1AA224EBA96006526EA /* ViewController.swift */; };
 		E8CDC1AE224EBA96006526EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CDC1AC224EBA96006526EA /* Main.storyboard */; };
@@ -23,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B19BA840F2E0CB256E1F3B8 /* Pods-Bubbles App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubbles App.release.xcconfig"; path = "Target Support Files/Pods-Bubbles App/Pods-Bubbles App.release.xcconfig"; sourceTree = "<group>"; };
+		A788A3B5A627B8616D380F0B /* Pods_Bubbles_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubbles_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E32626C3B1305099EE1F2720 /* Pods-Bubbles App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubbles App.debug.xcconfig"; path = "Target Support Files/Pods-Bubbles App/Pods-Bubbles App.debug.xcconfig"; sourceTree = "<group>"; };
+		E883781C224FA60A003737C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8CDC1A5224EBA96006526EA /* Bubbles App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bubbles App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CDC1A8224EBA96006526EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8CDC1AA224EBA96006526EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,17 +51,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				477D0B206405D3671158519D /* Pods_Bubbles_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EBD005896BC65582FBD7F31 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A788A3B5A627B8616D380F0B /* Pods_Bubbles_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F008C74F41EC117F7F3893A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E32626C3B1305099EE1F2720 /* Pods-Bubbles App.debug.xcconfig */,
+				0B19BA840F2E0CB256E1F3B8 /* Pods-Bubbles App.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E8CDC19C224EBA96006526EA = {
 			isa = PBXGroup;
 			children = (
 				E8CDC1A7224EBA96006526EA /* Bubbles App */,
 				E8CDC1A6224EBA96006526EA /* Products */,
+				3F008C74F41EC117F7F3893A /* Pods */,
+				3EBD005896BC65582FBD7F31 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +97,7 @@
 		E8CDC1A7224EBA96006526EA /* Bubbles App */ = {
 			isa = PBXGroup;
 			children = (
+				E883781C224FA60A003737C0 /* GoogleService-Info.plist */,
 				E8CDC1A8224EBA96006526EA /* AppDelegate.swift */,
 				E8CDC1AA224EBA96006526EA /* ViewController.swift */,
 				E8CDC1AC224EBA96006526EA /* Main.storyboard */,
@@ -95,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8CDC1B7224EBA9C006526EA /* Build configuration list for PBXNativeTarget "Bubbles App" */;
 			buildPhases = (
+				B883C4CAA41F2DFE45E8877D /* [CP] Check Pods Manifest.lock */,
 				E8CDC1A1224EBA96006526EA /* Sources */,
 				E8CDC1A2224EBA96006526EA /* Frameworks */,
 				E8CDC1A3224EBA96006526EA /* Resources */,
+				F4E19E2774C4AB3AF4B42029 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,12 +177,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8CDC1B3224EBA9C006526EA /* LaunchScreen.storyboard in Resources */,
+				E883781D224FA60A003737C0 /* GoogleService-Info.plist in Resources */,
 				E8CDC1B0224EBA9C006526EA /* Assets.xcassets in Resources */,
 				E8CDC1AE224EBA96006526EA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B883C4CAA41F2DFE45E8877D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bubbles App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4E19E2774C4AB3AF4B42029 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bubbles App/Pods-Bubbles App-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bubbles App/Pods-Bubbles App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E8CDC1A1224EBA96006526EA /* Sources */ = {
@@ -312,6 +392,7 @@
 		};
 		E8CDC1B8224EBA9C006526EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E32626C3B1305099EE1F2720 /* Pods-Bubbles App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -330,6 +411,7 @@
 		};
 		E8CDC1B9224EBA9C006526EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B19BA840F2E0CB256E1F3B8 /* Pods-Bubbles App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
