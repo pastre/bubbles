@@ -21,7 +21,6 @@
 		E8CDC1C6224EBB23006526EA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BE224EBB22006526EA /* Utils.swift */; };
 		E8CDC1C7224EBB23006526EA /* BblExplosionParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BF224EBB22006526EA /* BblExplosionParticle.swift */; };
 		E8CDC1C8224EBB23006526EA /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1C0224EBB23006526EA /* Bubble.swift */; };
-		E8CDC1C9224EBB23006526EA /* BubblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1C1224EBB23006526EA /* BubblesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 		E8CDC1BE224EBB22006526EA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E8CDC1BF224EBB22006526EA /* BblExplosionParticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BblExplosionParticle.swift; sourceTree = "<group>"; };
 		E8CDC1C0224EBB23006526EA /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
-		E8CDC1C1224EBB23006526EA /* BubblesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubblesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +70,6 @@
 				E32626C3B1305099EE1F2720 /* Pods-Bubbles App.debug.xcconfig */,
 				0B19BA840F2E0CB256E1F3B8 /* Pods-Bubbles App.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -104,7 +101,6 @@
 				E8CDC1BF224EBB22006526EA /* BblExplosionParticle.swift */,
 				E8CDC1C0224EBB23006526EA /* Bubble.swift */,
 				E8CDC1BD224EBB22006526EA /* ColorPicker.swift */,
-				E8CDC1C1224EBB23006526EA /* BubblesView.swift */,
 				E8CDC1BA224EBB22006526EA /* Options.swift */,
 				E8CDC1BB224EBB22006526EA /* Photo.swift */,
 				E8CDC1BC224EBB22006526EA /* Tutorial.swift */,
@@ -239,7 +235,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8CDC1C9224EBB23006526EA /* BubblesView.swift in Sources */,
 				E8CDC1C3224EBB23006526EA /* Photo.swift in Sources */,
 				E8CDC1C8224EBB23006526EA /* Bubble.swift in Sources */,
 				E8CDC1AB224EBA96006526EA /* ViewController.swift in Sources */,
@@ -395,6 +390,7 @@
 			baseConfigurationReference = E32626C3B1305099EE1F2720 /* Pods-Bubbles App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = "Bubbles App/Info.plist";
@@ -402,8 +398,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pastre.githubio.com.Bubbles-App";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.bubbles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -414,6 +411,7 @@
 			baseConfigurationReference = 0B19BA840F2E0CB256E1F3B8 /* Pods-Bubbles App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = "Bubbles App/Info.plist";
@@ -421,8 +419,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pastre.githubio.com.Bubbles-App";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.bubbles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

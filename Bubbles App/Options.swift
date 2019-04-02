@@ -74,11 +74,6 @@ public class OptionsView  : UIView{
             button.topAnchor.constraint(equalTo: self.topAnchor, constant: offset).isActive = true
             button.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
             button.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
-//            if buttonName == "catavento"{
-//                button.topRounded()
-//            }else if buttonName == "touch"{
-//                button.bottomRounded()
-//            }
             offset += 60
         }
     }
@@ -86,37 +81,33 @@ public class OptionsView  : UIView{
     func getButton(withName named : String, index: Int) -> UIButton{
         let buttonIcon = self.icons[named]!
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: buttonIcon.cgImage!.width, height: buttonIcon.cgImage!.height))
-//        let isRounded = index != 1
-//        if isRounded{
-//            let isTop = index == 0
-//            button.roundedCorners(top: isTop)
-//        }
         button.setImage(buttonIcon.maskWithColor(color: self.colors["default_icon"]!), for: .normal)
-//        if named == "camera"{
-//            button.backgroundColor = .none
-//        }else{
-//            button.backgroundColor = self.colors["default_background"]
-//        }
-//        button.setImage(buttonIcon.maskWithColor(color: #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)), for: .highlighted)
-//        button.clipsToBounds = true
-//        button.layer.cornerRadius = 20
-//        button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        
         button.addTarget(self, action: #selector(self.buttonCallback), for: .touchDown)
         
         return button
     }
     
-    @objc func buttonCallback(sender: UIButton!){
+    func changeButton(toButtonNamed : String){
+        for(buttonName, button) in buttons{
+            if buttonName == toButtonNamed{
+                changeButton(toButton: button)
+                return
+            }
+        }
+    }
+    
+    func changeButton(toButton: UIButton){
         for (buttonName, button) in buttons{
             let icon = self.icons[buttonName]!
             if buttonName == "camera"{
-                if sender == button{
+                if toButton == button{
                     self.delegate?.onCameraPressed()
                     break
                 }
                 continue
             }
-            if button == sender{
+            if button == toButton{
                 print("O botao eh ", button)
                 setButtonAsActive(button: button, withIcon: icon)
                 self.delegate?.onOptionChanged(newOption: buttonName)
@@ -124,6 +115,10 @@ public class OptionsView  : UIView{
                 setButtonAsInactive(button: button, withIcon: icon)
             }
         }
+    }
+    
+    @objc func buttonCallback(sender: UIButton!){
+        changeButton(toButton: sender)
     }
     
     func setButtonAsActive(button: UIButton, withIcon icon: UIImage){

@@ -14,7 +14,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     var photoView: PhotoView!
     
     var debugLabel: UILabel!
-    var detectingLabel: UILabel!
+//    var detectingLabel: UILabel!
     
     // This is in order to play the pop sound
     //    let popSound = URL(fileURLWithPath: Bundle.main.path(forResource: "pop", ofType: "mp3")!)
@@ -105,14 +105,14 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         
         // Creating and setting the detecting plane label
         let font = UIFont(name: "HelveticaNeue-BoldItalic", size: 22)
-        detectingLabel = UILabel(frame: CGRect(x: 20, y: -20, width: 300, height: 100))
-        detectingLabel.font = font
-        detectingLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        detectingLabel.layer.shadowColor = UIColor.black.cgColor
-        detectingLabel.layer.shadowOpacity = 1.0
-        detectingLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
-        detectingLabel.text = "detecting horizontal plane..."
-        
+//        detectingLabel = UILabel(frame: CGRect(x: 20, y: -20, width: 300, height: 100))
+//        detectingLabel.font = font
+//        detectingLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+//        detectingLabel.layer.shadowColor = UIColor.black.cgColor
+//        detectingLabel.layer.shadowOpacity = 1.0
+//        detectingLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
+//        detectingLabel.text = "detecting horizontal plane..."
+//
         
         // Instantiating and setting the debug label
         debugLabel = UILabel(frame: CGRect(x: 20, y: 20, width: 300, height: 100))
@@ -273,19 +273,14 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     
     public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        
-        DispatchQueue.main.async {
-            self.detectingLabel.isHidden = true
-        }
-        
+//        DispatchQueue.main.async {
+//            self.detectingLabel.isHidden = true
+//        }
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        
         let width = CGFloat(planeAnchor.extent.x)
         let height = CGFloat(planeAnchor.extent.z)
         let plane = SCNPlane(width: width, height: height)
         plane.materials.first?.diffuse.contents = UIColor.clear
-        
-        
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -294,7 +289,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
         
     }
-    
+
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         handleColorChange(touches)
     }
