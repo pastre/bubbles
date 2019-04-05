@@ -69,60 +69,9 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         self.setupUI()
         self.setUpSceneView()
         self.currentState = "blow"
-        self.initAutoButton()
-        self.initCameraButton()
-        self.initBlowLabel()
         //        self.spawnBubblePopParticle(spawnAt: SCNVector3(0, 0, 0), withColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
     }
-    
-    func initBlowLabel(){
-        self.blowLabel.text = "Blow."
-        self.blowLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        self.blowLabel.adjustsFontSizeToFitWidth = true
-        self.blowLabel.textAlignment = .center
-        self.blowLabel.font = UIFont(name: self.blowLabel.font.fontName, size: 20   )
-        self.view.addSubview(self.blowLabel)
-        
-        self.blowLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.blowLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        self.blowLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.blowLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
-        self.blowLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        
-    }
-    
-    func initCameraButton(){
-        let img = UIImage(named: "camera")?.maskWithColor(color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))!
-        self.cameraButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-        self.cameraButton.setImage(img, for: .normal)
-        self.cameraButton.addTarget(self, action: #selector(self.onCameraPressed), for: .touchDown)
-        self.view.addSubview(cameraButton)
-        
-        self.cameraButton.translatesAutoresizingMaskIntoConstraints = false
-        self.cameraButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
-        self.cameraButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat((img?.cgImage?.width)!) - 16).isActive = true
-        self.cameraButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.05).isActive = true
-        self.cameraButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)
-        
-    }
-    
-    func initAutoButton(){
-        let img = UIImage(named: "catavento")!
-        self.autoButton = UIButton(type: .contactAdd)
-        self.autoButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        self.autoButton.layer.cornerRadius = 0.2 * autoButton.bounds.size.width
-        self.autoButton.clipsToBounds = true
-        self.updateAutoColor()
-        self.autoButton.addTarget(self, action: #selector(self.updateAuto), for: .touchDown)
-        self.view.addSubview(autoButton)
-        self.autoButton.translatesAutoresizingMaskIntoConstraints = false
-        self.autoButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
-        self.autoButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat(-((img.cgImage?.width)!) - 2)).isActive = true
-        self.autoButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.07).isActive = true
-        self.autoButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
-        self.autoButton.setImage(img, for: .normal)
-        
-    }
+   
     
     @objc func updateAuto(){
         self.isAuto = !self.isAuto
@@ -229,7 +178,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         colorPickerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 23).isActive = true
         colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -240).isActive = true
 //        colorPickerView.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -CGFloat((colorPickerView.image?.cgImage?.height)!) ).isActive = true
-        colorPickerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
+        colorPickerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15).isActive = true
         colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         
         // Configura as constrains do bubblePicker
@@ -239,6 +188,9 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         bubbleBlowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         bubbleBlowerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
         
+        self.initAutoButton()
+        self.initCameraButton()
+        self.initBlowLabel()
         
         // Configura as contrains do menu de opcoes
 //        optionsView.translatesAutoresizingMaskIntoConstraints = false
@@ -317,16 +269,15 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         })
         
         sceneView.scene.rootNode.addChildNode(newBubble)
-        self.debugLabel.text = "\(self.bubbleCounter)"
     }
     
     func spawnBubblePopParticle(spawnAt point: SCNVector3, withColor color: UIColor){
         return
-        let emitter = SCNParticleSystem(named: "reactor.scnp" , inDirectory: nil)!
+        let emitter = SCNParticleSystem(named: "reactor", inDirectory: "Assets.xcassets")!
         emitter.particleColor = color
         emitter.particleLifeSpan = 1.0
         sceneView.scene.rootNode.addParticleSystem(emitter)
-        emitter.removeAllAnimations()
+//        emitter.removeAllAnimations()
     }
     
     public func setUpSceneView() {
@@ -424,6 +375,56 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         //        return imgz
     }
     //
+
+    
+    func initBlowLabel(){
+        self.blowLabel.text = "Blow."
+        self.blowLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.blowLabel.adjustsFontSizeToFitWidth = true
+        self.blowLabel.textAlignment = .center
+        self.blowLabel.font = UIFont(name: self.blowLabel.font.fontName, size: 20   )
+        self.view.addSubview(self.blowLabel)
+        
+        self.blowLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.blowLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.blowLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.blowLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
+        self.blowLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        
+    }
+    
+    func initCameraButton(){
+        let img = UIImage(named: "camera")?.maskWithColor(color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))!
+        self.cameraButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        self.cameraButton.setImage(img, for: .normal)
+        self.cameraButton.addTarget(self, action: #selector(self.onCameraPressed), for: .touchDown)
+        self.view.addSubview(cameraButton)
+        
+        self.cameraButton.translatesAutoresizingMaskIntoConstraints = false
+        self.cameraButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
+        self.cameraButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat((img?.cgImage?.width)!) - 16).isActive = true
+        self.cameraButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.05).isActive = true
+        self.cameraButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)
+        
+    }
+    
+    func initAutoButton(){
+        let img = UIImage(named: "catavento")!
+        self.autoButton = UIButton(type: .contactAdd)
+        self.autoButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.autoButton.layer.cornerRadius = 0.2 * autoButton.bounds.size.width
+        self.autoButton.clipsToBounds = true
+        self.updateAutoColor()
+        self.autoButton.addTarget(self, action: #selector(self.updateAuto), for: .touchDown)
+        self.view.addSubview(autoButton)
+        self.autoButton.translatesAutoresizingMaskIntoConstraints = false
+        self.autoButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
+        self.autoButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat(-((img.cgImage?.width)!) - 2)).isActive = true
+        self.autoButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.07).isActive = true
+        self.autoButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
+        self.autoButton.setImage(img, for: .normal)
+        
+    }
 }
 
 
