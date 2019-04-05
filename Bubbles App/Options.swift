@@ -47,6 +47,7 @@ public class OptionsView  : UIView{
         print("Pintando!")
     }
     
+    
     func initButtons(){
         for (buttonName, _) in self.icons {
             let button = getButton(withName: buttonName, index: 0)
@@ -76,6 +77,7 @@ public class OptionsView  : UIView{
             if prevButton == nil{
                 button.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             }else{
+                print("Appending to button")
                 button.topAnchor.constraint(equalTo: prevButton!.topAnchor, constant: offset).isActive = true
             }
             button.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
@@ -95,7 +97,7 @@ public class OptionsView  : UIView{
     
     func getButton(withName named : String, index: Int) -> UIButton{
         let buttonIcon = self.icons[named]!
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height:60))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height:(buttonIcon.cgImage?.height)! + 2))
         button.setImage(buttonIcon.maskWithColor(color: self.colors["default_icon"]!), for: .normal)
         
         button.addTarget(self, action: #selector(self.buttonCallback), for: .touchDown)

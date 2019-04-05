@@ -38,7 +38,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     // Armazena o estado tendo em vista as opcoes
     var currentState: String!
     var bubbleCounter: Int!
-    
+
     
     public override func loadView() {
         self.currentColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -59,7 +59,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         self.view = sceneView
         self.setupUI()
         self.setUpSceneView()
-        
+        self.currentState = "blow"
         //        self.spawnBubblePopParticle(spawnAt: SCNVector3(0, 0, 0), withColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
     }
     
@@ -93,7 +93,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     func onCameraPressed() {
         print("Tirando foto na GameScene")
         let pic = self.sceneView.snapshot()
-        //        self.goToPhotoView(image: pic)
+        self.goToPhotoView(image: pic)
     }
     
     func onOptionChanged(newOption: String) {
@@ -152,7 +152,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         //        self.view.addSubview(self.segmentControl)
         // Configura as constrains do colorPicker
         colorPickerView.translatesAutoresizingMaskIntoConstraints = false
-        colorPickerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2).isActive = true
+        colorPickerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -4).isActive = true
         colorPickerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -2).isActive = true
         colorPickerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.05).isActive = true
         colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
@@ -167,13 +167,10 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         
         // Configura as contrains do menu de opcoes
         optionsView.translatesAutoresizingMaskIntoConstraints = false
-        optionsView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -2).isActive = true
+        optionsView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
         optionsView.bottomAnchor.constraint(equalTo:colorPickerView.bottomAnchor, constant: 0).isActive = true
         optionsView.widthAnchor.constraint(equalTo:  view.widthAnchor, multiplier: 0.1).isActive = true
         optionsView.heightAnchor.constraint(equalTo: colorPickerView.heightAnchor).isActive = true
-        
-        
-        
     }
     
     
@@ -183,11 +180,9 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func initMicrophone(){
-        print("a")
         
         let documents = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
         let url = documents.appendingPathComponent("record.caf")
-        print("a")
         let recordSettings: [String: Any] = [
             AVFormatIDKey:              kAudioFormatAppleIMA4,
             AVSampleRateKey:            44100.0,
@@ -196,7 +191,6 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             AVLinearPCMBitDepthKey:     16,
             AVEncoderAudioQualityKey:   AVAudioQuality.max.rawValue
         ]
-        print("a")
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category.playAndRecord, mode: .default)
@@ -240,7 +234,6 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         newBubble.runAction(firstAction)
         newBubble.runAction(secondAction, completionHandler: {
             newBubble.runAction(SCNAction.fadeOut(duration: 0), completionHandler: {
-                print("Morri")
                 let moved = newBubble.position + firstVector + secondVector
                 //                self.playPop()
                 self.spawnBubblePopParticle(spawnAt: moved, withColor: self.currentColor)

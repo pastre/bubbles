@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		477D0B206405D3671158519D /* Pods_Bubbles_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788A3B5A627B8616D380F0B /* Pods_Bubbles_App.framework */; };
-		E8824D9522551C6B001BDD59 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8824D9422551C6B001BDD59 /* OptionsView.swift */; };
 		E883781D224FA60A003737C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E883781C224FA60A003737C0 /* GoogleService-Info.plist */; };
 		E8CDC1A9224EBA96006526EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1A8224EBA96006526EA /* AppDelegate.swift */; };
 		E8CDC1AB224EBA96006526EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1AA224EBA96006526EA /* ViewController.swift */; };
@@ -16,7 +15,7 @@
 		E8CDC1B0224EBA9C006526EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8CDC1AF224EBA9C006526EA /* Assets.xcassets */; };
 		E8CDC1B3224EBA9C006526EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CDC1B1224EBA9C006526EA /* LaunchScreen.storyboard */; };
 		E8CDC1C2224EBB23006526EA /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BA224EBB22006526EA /* Options.swift */; };
-		E8CDC1C3224EBB23006526EA /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BB224EBB22006526EA /* Photo.swift */; };
+		E8CDC1C3224EBB23006526EA /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BB224EBB22006526EA /* PhotoView.swift */; };
 		E8CDC1C4224EBB23006526EA /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BC224EBB22006526EA /* Tutorial.swift */; };
 		E8CDC1C5224EBB23006526EA /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BD224EBB22006526EA /* ColorPicker.swift */; };
 		E8CDC1C6224EBB23006526EA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1BE224EBB22006526EA /* Utils.swift */; };
@@ -28,7 +27,6 @@
 		0B19BA840F2E0CB256E1F3B8 /* Pods-Bubbles App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubbles App.release.xcconfig"; path = "Target Support Files/Pods-Bubbles App/Pods-Bubbles App.release.xcconfig"; sourceTree = "<group>"; };
 		A788A3B5A627B8616D380F0B /* Pods_Bubbles_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubbles_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32626C3B1305099EE1F2720 /* Pods-Bubbles App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubbles App.debug.xcconfig"; path = "Target Support Files/Pods-Bubbles App/Pods-Bubbles App.debug.xcconfig"; sourceTree = "<group>"; };
-		E8824D9422551C6B001BDD59 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		E883781C224FA60A003737C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8CDC1A5224EBA96006526EA /* Bubbles App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bubbles App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CDC1A8224EBA96006526EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +36,7 @@
 		E8CDC1B2224EBA9C006526EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8CDC1B4224EBA9C006526EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8CDC1BA224EBB22006526EA /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
-		E8CDC1BB224EBB22006526EA /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		E8CDC1BB224EBB22006526EA /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		E8CDC1BC224EBB22006526EA /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		E8CDC1BD224EBB22006526EA /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		E8CDC1BE224EBB22006526EA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -75,6 +73,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E84F1BB42257D2630022901E /* nodes */ = {
+			isa = PBXGroup;
+			children = (
+				E8CDC1BF224EBB22006526EA /* BblExplosionParticle.swift */,
+				E8CDC1C0224EBB23006526EA /* Bubble.swift */,
+			);
+			path = nodes;
+			sourceTree = "<group>";
+		};
 		E8CDC19C224EBA96006526EA = {
 			isa = PBXGroup;
 			children = (
@@ -96,21 +103,19 @@
 		E8CDC1A7224EBA96006526EA /* Bubbles App */ = {
 			isa = PBXGroup;
 			children = (
+				E84F1BB42257D2630022901E /* nodes */,
 				E883781C224FA60A003737C0 /* GoogleService-Info.plist */,
 				E8CDC1A8224EBA96006526EA /* AppDelegate.swift */,
 				E8CDC1AA224EBA96006526EA /* ViewController.swift */,
 				E8CDC1AC224EBA96006526EA /* Main.storyboard */,
-				E8CDC1BF224EBB22006526EA /* BblExplosionParticle.swift */,
-				E8CDC1C0224EBB23006526EA /* Bubble.swift */,
 				E8CDC1BD224EBB22006526EA /* ColorPicker.swift */,
 				E8CDC1BA224EBB22006526EA /* Options.swift */,
-				E8CDC1BB224EBB22006526EA /* Photo.swift */,
+				E8CDC1BB224EBB22006526EA /* PhotoView.swift */,
 				E8CDC1BC224EBB22006526EA /* Tutorial.swift */,
 				E8CDC1BE224EBB22006526EA /* Utils.swift */,
 				E8CDC1AF224EBA9C006526EA /* Assets.xcassets */,
 				E8CDC1B1224EBA9C006526EA /* LaunchScreen.storyboard */,
 				E8CDC1B4224EBA9C006526EA /* Info.plist */,
-				E8824D9422551C6B001BDD59 /* OptionsView.swift */,
 			);
 			path = "Bubbles App";
 			sourceTree = "<group>";
@@ -238,10 +243,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8CDC1C3224EBB23006526EA /* Photo.swift in Sources */,
+				E8CDC1C3224EBB23006526EA /* PhotoView.swift in Sources */,
 				E8CDC1C8224EBB23006526EA /* Bubble.swift in Sources */,
 				E8CDC1AB224EBA96006526EA /* ViewController.swift in Sources */,
-				E8824D9522551C6B001BDD59 /* OptionsView.swift in Sources */,
 				E8CDC1C7224EBB23006526EA /* BblExplosionParticle.swift in Sources */,
 				E8CDC1C2224EBB23006526EA /* Options.swift in Sources */,
 				E8CDC1C6224EBB23006526EA /* Utils.swift in Sources */,
