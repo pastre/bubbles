@@ -158,6 +158,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         // Instancia a view do bubble blower
         let bubbleBlowerImage = self.getBubbleBlowerImage()
         let bubbleBlowerView = UIImageView(image: bubbleBlowerImage)
+        bubbleBlowerView.contentMode = .scaleAspectFill
         bubbleBlowerView.frame = CGRect(x: 0, y:0, width: 60, height: 60)
         self.bubbleBlowerView = bubbleBlowerView
         
@@ -357,7 +358,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func updateMic(){
-        self.initMicrophone()
+//        initMicrophone()
         recorder.updateMeters()
         let level = recorder.averagePower(forChannel: 0)
         let isLoud = level > LEVEL_THRESHOLD
@@ -394,17 +395,22 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func initCameraButton(){
-        let img = UIImage(named: "camera")?.maskWithColor(color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))!
-        self.cameraButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        let img = UIImage(named: "camera")?.maskWithColor(color: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))!
+        self.cameraButton = UIButton()
         self.cameraButton.setImage(img, for: .normal)
+        self.cameraButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.cameraButton.layer.cornerRadius = 0.4 * autoButton.bounds.size.width
+//        self.cameraButton.clipsToBounds = true
         self.cameraButton.addTarget(self, action: #selector(self.onCameraPressed), for: .touchDown)
+        self.cameraButton.imageView?.contentMode = .scaleAspectFit
+        
         self.view.addSubview(cameraButton)
         
         self.cameraButton.translatesAutoresizingMaskIntoConstraints = false
         self.cameraButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
-        self.cameraButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat((img?.cgImage?.width)!) - 16).isActive = true
-        self.cameraButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.05).isActive = true
-        self.cameraButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)
+        self.cameraButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat((img?.cgImage?.width)!) - 2).isActive = true
+        self.cameraButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.08).isActive = true
+        self.cameraButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.02)
         
     }
     
@@ -412,7 +418,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let img = UIImage(named: "catavento")!
         self.autoButton = UIButton(type: .contactAdd)
         self.autoButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        self.autoButton.layer.cornerRadius = 0.2 * autoButton.bounds.size.width
+        self.autoButton.layer.cornerRadius = 0.4 * autoButton.bounds.size.width
         self.autoButton.clipsToBounds = true
         self.updateAutoColor()
         self.autoButton.addTarget(self, action: #selector(self.updateAuto), for: .touchDown)
