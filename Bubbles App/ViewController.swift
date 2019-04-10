@@ -8,8 +8,9 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     // ARView stuff
     let session = ARSession()
-    var sceneView: ARSCNView!
+//    var sceneView: ARSCNView!
     
+    @IBOutlet weak var sceneView: ARSCNView!
     // Declares a view to display pics
     var photoView: PhotoView!
     
@@ -39,10 +40,11 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     var currentState: String!
     var bubbleCounter: Int!
 
-    var autoButton: UIButton!
+    @IBOutlet var newView: UIView!
+    @IBOutlet weak var autoButton: UIButton!
+    
     var isAuto: Bool!
     
-    var cameraButton: UIButton!
     
     var blowLabel: UILabel!
     var hasBlown: Bool!
@@ -52,7 +54,8 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         self.isAuto = false
         self.blowLabel = UILabel()
         self.hasBlown = false
-        sceneView = ARSCNView(frame: CGRect(x: 0.0, y: 0.0, width: 768, height: 1024))
+        super.loadView()
+//        sceneView = ARSCNView(frame: CGRect(x: 0.0, y: 0.0, width: 768, height: 1024))
         photoView = PhotoView(frame: CGRect(x: 0, y: 0, width: 768, height: 1024))
         
         initMicrophone() // Inicializa o microfone para detectar o sopro
@@ -65,7 +68,6 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         sceneView.autoenablesDefaultLighting = true
         
         photoView.delegate = self
-        self.view = sceneView
         self.setupUI()
         self.setUpSceneView()
         self.currentState = "blow"
@@ -73,15 +75,15 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
    
     
-    @objc func updateAuto(){
+    func updateAuto(_ sender: UIButton){
         self.isAuto = !self.isAuto
-        self.updateAutoColor()
+        self.updateAutoColor(sender)
         self.currentState = self.isAuto ? "auto" : "blow"
     }
     
-    func updateAutoColor(){
-        
-        self.autoButton.tintColor = self.isAuto ? #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1) : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+    func updateAutoColor(_ sender: UIButton){
+        let image = UIImage(named: "catavento")?.maskWithColor(color: self.isAuto ? #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+        sender.setImage(image, for: .normal)
     }
     
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -121,9 +123,20 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         self.currentState = newOption
         print("Mudando o estado para", newOption)
     }
+    //    TODO: Aprender a usar isso aqui
+//    let colorPicker : UIImageView = {
+//        let image = UIImageView()
+//        image.image = UIImage(named: "colorPicker")
+//        image.translatesAutoresizingMaskIntoConstraints = false
+//        return image
+//    }()
+//
+    //Hierarquia (addSubview)
+    //Constraints
+    //Configurações adicionais
     
     private func setupUI() {
-        
+
         // Creating and setting the detecting plane label
         let font = UIFont(name: "HelveticaNeue-BoldItalic", size: 22)
 //        detectingLabel = UILabel(frame: CGRect(x: 20, y: -20, width: 300, height: 100))
@@ -170,7 +183,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         self.view.addSubview(colorPickerView)
         //        self.view.addSubview(detectingLabel)
         //        self.view.addSubview(debugLabel)
-        self.view.addSubview(optionsView)
+//        self.view.addSubview(optionsView)
         //        self.view.addSubview(optionsView)
         
         //        self.view.addSubview(self.segmentControl)
@@ -189,8 +202,8 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         bubbleBlowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         bubbleBlowerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
         
-        self.initAutoButton()
-        self.initCameraButton()
+//        self.initAutoButton()
+//        self.initCameraButton()
         self.initBlowLabel()
         
         // Configura as contrains do menu de opcoes
@@ -347,6 +360,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         //        }
         //        canRecord = true;
     }
+    
     func getNewPosition() -> (SCNVector3) { // (direction, position)
         if let frame = self.sceneView.session.currentFrame {
             let mat = SCNMatrix4(frame.camera.transform) // 4x4 transform matrix describing camera in world space
@@ -372,6 +386,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     func getBubbleBlowerImage() -> UIImage{
         let img = UIImage(named: "bubbleblower")!
+        return img
         return img.maskWithColor(color: self.currentColor)!
         //        return imgz
     }
@@ -394,43 +409,15 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         
     }
     
-    func initCameraButton(){
-        let img = UIImage(named: "camera")?.maskWithColor(color: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))!
-        self.cameraButton = UIButton()
-        self.cameraButton.setImage(img, for: .normal)
-        self.cameraButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        self.cameraButton.layer.cornerRadius = 0.4 * autoButton.bounds.size.width
-//        self.cameraButton.clipsToBounds = true
-        self.cameraButton.addTarget(self, action: #selector(self.onCameraPressed), for: .touchDown)
-        self.cameraButton.imageView?.contentMode = .scaleAspectFit
-        
-        self.view.addSubview(cameraButton)
-        
-        self.cameraButton.translatesAutoresizingMaskIntoConstraints = false
-        self.cameraButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
-        self.cameraButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat((img?.cgImage?.width)!) - 2).isActive = true
-        self.cameraButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.08).isActive = true
-        self.cameraButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.02)
-        
+    
+    @IBAction func onCameraButtonClicked(_ sender: Any) {
+        self.onCameraPressed()
+    }
+    @IBAction func onAutoButtonClicked(_ sender: Any) {
+        let button = sender as! UIButton
+        self.updateAuto(button)
     }
     
-    func initAutoButton(){
-        let img = UIImage(named: "catavento")!
-        self.autoButton = UIButton(type: .contactAdd)
-        self.autoButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        self.autoButton.layer.cornerRadius = 0.4 * autoButton.bounds.size.width
-        self.autoButton.clipsToBounds = true
-        self.updateAutoColor()
-        self.autoButton.addTarget(self, action: #selector(self.updateAuto), for: .touchDown)
-        self.view.addSubview(autoButton)
-        self.autoButton.translatesAutoresizingMaskIntoConstraints = false
-        self.autoButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
-        self.autoButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: CGFloat(-((img.cgImage?.width)!) - 2)).isActive = true
-        self.autoButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.07).isActive = true
-        self.autoButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
-        self.autoButton.setImage(img, for: .normal)
-        
-    }
 }
 
 
