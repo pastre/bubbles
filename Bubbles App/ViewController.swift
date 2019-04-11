@@ -348,13 +348,26 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     @objc func takePic(){
         print("Taking picture")
-        //
+        
         let pic = self.sceneView.snapshot()
+
+        mimicScreenShotFlash()
         print("Loaded pic")
         UIImageWriteToSavedPhotosAlbum(pic, nil, nil, nil)
         print("Saved pic")
     }
-    
+    func mimicScreenShotFlash() {
+        
+        let aView = UIView(frame: self.view.frame)
+        aView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.view.addSubview(aView)
+        
+        UIView.animate(withDuration: 1.3, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: { () -> Void in
+            aView.alpha = 0.0
+        }, completion: { (done) -> Void in
+            aView.removeFromSuperview()
+        })
+    }
     func playPop(){
         //        print("Played pop!")
         ////        canRecord = false;
@@ -387,8 +400,6 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         if isLoud{
             spawnBubble()
         }
-        
-        //        debugLabel.text = "\(level)"
     }
     
     
@@ -419,7 +430,8 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     
     @IBAction func onCameraButtonClicked(_ sender: Any) {
-        self.onCameraPressed()
+//        self.onCameraPressed()
+        self.takePic()
     }
     @IBAction func onAutoButtonClicked(_ sender: Any) {
         let button = sender as! UIButton
