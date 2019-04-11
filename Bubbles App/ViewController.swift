@@ -71,9 +71,17 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         self.setupUI()
         self.setUpSceneView()
         self.currentState = "blow"
+        
+//        self.view.translatesAutoresizingMaskIntoConstraints = false
         //        self.spawnBubblePopParticle(spawnAt: SCNVector3(0, 0, 0), withColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+        
     }
-   
+    
+    
+    override open var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     
     func updateAuto(_ sender: UIButton){
         self.isAuto = !self.isAuto
@@ -110,7 +118,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     func onBackButtonPressed() {
         print("Back button pressed!")
-        self.view = sceneView
+//        self.view = sceneView
     }
     
     @objc func onCameraPressed() {
@@ -417,7 +425,6 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let button = sender as! UIButton
         self.updateAuto(button)
     }
-    
 }
 
 
