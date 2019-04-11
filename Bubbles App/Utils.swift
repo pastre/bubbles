@@ -2,10 +2,60 @@ import Foundation
 
 import ARKit
 
+import UIKit
 public func floatBetween(_ first: Float,  and second: Float) -> Float {
     // random float between upper and lower bound (inclusive)
     return (Float(arc4random()) / Float(UInt32.max)) * (first - second) + second
 }
+
+@IBDesignable
+class CircledDotView: UIView {
+    
+    var shapeLayer: CAShapeLayer!
+    
+    @IBInspectable var mainColor: UIColor = .white {
+        didSet { print("mainColor was set here") }
+    }
+    @IBInspectable var ringColor: UIColor = .black {
+        didSet { print("bColor was set here") }
+    }
+    @IBInspectable var ringThickness: CGFloat = 4 {
+        didSet { print("ringThickness was set here") }
+    }
+    
+    @IBInspectable var isSelected: Bool = true
+    
+    override func draw(_ rect: CGRect) {
+        let dotPath = UIBezierPath(ovalIn: rect)
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = dotPath.cgPath
+        shapeLayer.fillColor = mainColor.cgColor
+        layer.addSublayer(shapeLayer)
+        
+        if (isSelected) {
+            drawRingFittingInsideView(rect: rect)
+        }
+    }
+    
+    func updateColor(color: UIColor){
+        
+        self.shapeLayer.fillColor = color.cgColor
+        
+    }
+    
+    internal func drawRingFittingInsideView(rect: CGRect) {
+        let hw: CGFloat = ringThickness / 2
+        let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: hw, dy: hw))
+        
+        shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = ringColor.cgColor
+        shapeLayer.lineWidth = ringThickness
+        layer.addSublayer(shapeLayer)
+    }
+}
+
 
 public extension SCNVector3 {
     func length() -> Float {
@@ -20,6 +70,9 @@ public extension SCNVector3 {
         return self / self.length()
     }
 }
+
+
+
 extension UIImageView {
     func getPixelColorAt(point:CGPoint) -> UIColor{
         

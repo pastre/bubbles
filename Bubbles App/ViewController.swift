@@ -10,7 +10,9 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     let session = ARSession()
 //    var sceneView: ARSCNView!
     
+    @IBOutlet weak var selectedColorView: CircledDotView!
     @IBOutlet weak var sceneView: ARSCNView!
+    
     // Declares a view to display pics
     var photoView: PhotoView!
     
@@ -187,7 +189,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let optionsView = OptionsView()
         optionsView.delegate = self
         // coloca as imagens nas views
-        self.view.addSubview(bubbleBlowerView)
+//        self.view.addSubview(bubbleBlowerView)
         self.view.addSubview(colorPickerView)
         //        self.view.addSubview(detectingLabel)
         //        self.view.addSubview(debugLabel)
@@ -204,13 +206,13 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         colorPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         
         // Configura as constrains do bubblePicker
-        bubbleBlowerView.translatesAutoresizingMaskIntoConstraints = false
-        bubbleBlowerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        bubbleBlowerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        bubbleBlowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
-        bubbleBlowerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
-        
-//        self.initAutoButton()
+//        bubbleBlowerView.translatesAutoresizingMaskIntoConstraints = false
+//        bubbleBlowerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        bubbleBlowerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//        bubbleBlowerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
+//        bubbleBlowerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
+//
+////        self.initAutoButton()
 //        self.initCameraButton()
         self.initBlowLabel()
         
@@ -342,6 +344,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             if color.alphaValue != 0{
                 self.bubbleBlowerView.image = self.getBubbleBlowerImage()
                 self.currentColor = color.withAlphaComponent(1.0)
+                self.selectedColorView.updateColor(color: self.currentColor)
             }
         }
     }

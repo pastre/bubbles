@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait">
+    <device id="ipad12_9rounded" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Bubbles_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFw-2l-w68">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVE-1d-tMx">
-                                <rect key="frame" x="258" y="784" width="58" height="58"/>
+                                <rect key="frame" x="800" y="1234" width="92" height="92"/>
                                 <color key="backgroundColor" red="0.037021518170000003" green="0.037021518170000003" blue="0.037021518170000003" alpha="0.49504332979999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o67-nt-p0P" userLabel="HelpButton">
-                                <rect key="frame" x="98" y="784" width="58" height="58"/>
+                                <rect key="frame" x="132" y="1234" width="92" height="92"/>
                                 <color key="backgroundColor" red="0.037021518170000003" green="0.037021518170000003" blue="0.037021518170000003" alpha="0.49504332979999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" image="help">
@@ -52,9 +52,10 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bm-IG-bF6" userLabel="SettingsButton">
-                                <rect key="frame" x="20" y="784" width="58" height="58"/>
+                                <rect key="frame" x="20" y="1234" width="92" height="92"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.50223214289999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="0bm-IG-bF6" secondAttribute="height" multiplier="1:1" id="Gfl-sU-9Ja"/>
                                     <constraint firstAttribute="width" secondItem="0bm-IG-bF6" secondAttribute="height" multiplier="1:1" id="ZnV-43-E3b"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -68,7 +69,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNM-G6-qLc" userLabel="CameraButton">
-                                <rect key="frame" x="336" y="784" width="58" height="58"/>
+                                <rect key="frame" x="912" y="1234" width="92" height="92"/>
                                 <color key="backgroundColor" red="0.037021518170000003" green="0.037021518170000003" blue="0.037021518170000003" alpha="0.49504332979999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" image="camera"/>
@@ -81,20 +82,47 @@
                                     <action selector="onCameraButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K3X-jY-DdD"/>
                                 </connections>
                             </button>
+                            <view clipsSubviews="YES" alpha="0.34999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0w-pU-Sz9" customClass="CircledDotView" customModule="Bubbles_App" customModuleProvider="target">
+                                <rect key="frame" x="394" y="664.5" width="236" height="269"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="ringColor">
+                                        <color key="value" red="0.83391497459999997" green="0.80614616210000001" blue="0.15696844600000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ringThickness">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="bubbleblower" translatesAutoresizingMaskIntoConstraints="NO" id="dWb-3J-mNr">
+                                <rect key="frame" x="370.5" y="658" width="283" height="708"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dWb-3J-mNr" secondAttribute="height" multiplier="283:708" id="xbq-ov-R47"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uFw-2l-w68" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1YM-90-IuT"/>
                             <constraint firstItem="lNM-G6-qLc" firstAttribute="width" secondItem="0bm-IG-bF6" secondAttribute="width" id="3A1-03-0pF"/>
                             <constraint firstItem="lNM-G6-qLc" firstAttribute="height" secondItem="0bm-IG-bF6" secondAttribute="height" id="5bm-tE-rPQ"/>
+                            <constraint firstItem="E0w-pU-Sz9" firstAttribute="top" secondItem="dWb-3J-mNr" secondAttribute="top" multiplier="1.01" id="6yt-Xz-zg8"/>
+                            <constraint firstAttribute="bottom" secondItem="dWb-3J-mNr" secondAttribute="bottom" id="8DY-yN-Rtl"/>
                             <constraint firstItem="uFw-2l-w68" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8V0-y9-pg2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lNM-G6-qLc" secondAttribute="bottom" constant="20" id="9ng-cC-lQE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lNM-G6-qLc" secondAttribute="trailing" constant="20" id="Ab5-eR-cyW"/>
+                            <constraint firstItem="E0w-pU-Sz9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ggz-P1-TdB"/>
+                            <constraint firstItem="dWb-3J-mNr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MsJ-pv-wjj"/>
                             <constraint firstItem="HVE-1d-tMx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="o67-nt-p0P" secondAttribute="trailing" priority="999" constant="102" id="aLu-Pc-Wr6"/>
                             <constraint firstItem="o67-nt-p0P" firstAttribute="height" secondItem="0bm-IG-bF6" secondAttribute="height" id="dMS-JX-ysy"/>
+                            <constraint firstItem="dWb-3J-mNr" firstAttribute="width" secondItem="E0w-pU-Sz9" secondAttribute="width" multiplier="1.2" id="dNP-0F-dVG"/>
                             <constraint firstItem="o67-nt-p0P" firstAttribute="leading" secondItem="0bm-IG-bF6" secondAttribute="trailing" constant="20" id="e6g-5X-bHZ"/>
                             <constraint firstAttribute="bottom" secondItem="uFw-2l-w68" secondAttribute="bottom" id="ees-Ks-OYw"/>
                             <constraint firstItem="HVE-1d-tMx" firstAttribute="height" secondItem="0bm-IG-bF6" secondAttribute="height" id="fZ8-VO-gaa"/>
+                            <constraint firstItem="E0w-pU-Sz9" firstAttribute="height" secondItem="dWb-3J-mNr" secondAttribute="height" multiplier="0.38" id="g8M-a2-KOh"/>
                             <constraint firstItem="HVE-1d-tMx" firstAttribute="width" secondItem="0bm-IG-bF6" secondAttribute="width" id="hNG-w6-1QW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0bm-IG-bF6" secondAttribute="bottom" constant="20" id="hpe-1w-6Av"/>
                             <constraint firstItem="lNM-G6-qLc" firstAttribute="bottom" secondItem="HVE-1d-tMx" secondAttribute="bottom" id="iai-UG-miA"/>
@@ -103,12 +131,14 @@
                             <constraint firstItem="lNM-G6-qLc" firstAttribute="leading" secondItem="HVE-1d-tMx" secondAttribute="trailing" constant="20" id="ssT-Z1-96s"/>
                             <constraint firstItem="uFw-2l-w68" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="uzF-yc-qpi"/>
                             <constraint firstItem="o67-nt-p0P" firstAttribute="width" secondItem="0bm-IG-bF6" secondAttribute="width" id="woF-rK-CwZ"/>
+                            <constraint firstItem="0bm-IG-bF6" firstAttribute="height" secondItem="dWb-3J-mNr" secondAttribute="height" multiplier="0.13" id="zhp-Ly-xAP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="newView" destination="8bC-Xf-vdC" id="OyJ-Pd-4io"/>
                         <outlet property="sceneView" destination="uFw-2l-w68" id="eQN-a8-rrr"/>
+                        <outlet property="selectedColorView" destination="E0w-pU-Sz9" id="mmh-hR-sZ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -117,6 +147,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bubbleblower" width="283" height="708"/>
         <image name="camera" width="16.799999237060547" height="16.799999237060547"/>
         <image name="catavento" width="70" height="70"/>
         <image name="help" width="52.5" height="52.5"/>
