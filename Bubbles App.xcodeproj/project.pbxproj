@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		477D0B206405D3671158519D /* Pods_Bubbles_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788A3B5A627B8616D380F0B /* Pods_Bubbles_App.framework */; };
+		E856AAB52261046400F59F37 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856AAB42261046400F59F37 /* ConfigViewController.swift */; };
 		E883781D224FA60A003737C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E883781C224FA60A003737C0 /* GoogleService-Info.plist */; };
 		E8CDC1A9224EBA96006526EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1A8224EBA96006526EA /* AppDelegate.swift */; };
 		E8CDC1AB224EBA96006526EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CDC1AA224EBA96006526EA /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 		0B19BA840F2E0CB256E1F3B8 /* Pods-Bubbles App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubbles App.release.xcconfig"; path = "Target Support Files/Pods-Bubbles App/Pods-Bubbles App.release.xcconfig"; sourceTree = "<group>"; };
 		A788A3B5A627B8616D380F0B /* Pods_Bubbles_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubbles_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32626C3B1305099EE1F2720 /* Pods-Bubbles App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubbles App.debug.xcconfig"; path = "Target Support Files/Pods-Bubbles App/Pods-Bubbles App.debug.xcconfig"; sourceTree = "<group>"; };
+		E856AAB42261046400F59F37 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		E883781C224FA60A003737C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8CDC1A5224EBA96006526EA /* Bubbles App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bubbles App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CDC1A8224EBA96006526EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				E883781C224FA60A003737C0 /* GoogleService-Info.plist */,
 				E8CDC1A8224EBA96006526EA /* AppDelegate.swift */,
 				E8CDC1AA224EBA96006526EA /* ViewController.swift */,
+				E856AAB42261046400F59F37 /* ConfigViewController.swift */,
 				E8CDC1AC224EBA96006526EA /* Main.storyboard */,
 				E8CDC1BD224EBB22006526EA /* ColorPicker.swift */,
 				E8CDC1BA224EBB22006526EA /* Options.swift */,
@@ -251,6 +254,7 @@
 				E8CDC1C6224EBB23006526EA /* Utils.swift in Sources */,
 				E8CDC1A9224EBA96006526EA /* AppDelegate.swift in Sources */,
 				E8CDC1C4224EBB23006526EA /* Tutorial.swift in Sources */,
+				E856AAB52261046400F59F37 /* ConfigViewController.swift in Sources */,
 				E8CDC1C5224EBB23006526EA /* ColorPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad12_9rounded" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Bubbles_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFw-2l-w68">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVE-1d-tMx">
-                                <rect key="frame" x="800" y="1234" width="92" height="92"/>
+                                <rect key="frame" x="258" y="784" width="58" height="58"/>
                                 <color key="backgroundColor" red="0.037021518170000003" green="0.037021518170000003" blue="0.037021518170000003" alpha="0.49504332979999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -39,10 +39,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o67-nt-p0P" userLabel="HelpButton">
-                                <rect key="frame" x="132" y="1234" width="92" height="92"/>
+                                <rect key="frame" x="98" y="784" width="58" height="58"/>
                                 <color key="backgroundColor" red="0.037021518170000003" green="0.037021518170000003" blue="0.037021518170000003" alpha="0.49504332979999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                <state key="normal" image="help">
+                                <state key="normal" image="camera">
                                     <color key="titleColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -50,9 +50,12 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onCameraButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3ME-tk-jxL"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bm-IG-bF6" userLabel="SettingsButton">
-                                <rect key="frame" x="20" y="1234" width="92" height="92"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bm-IG-bF6" userLabel="SettingsButton">
+                                <rect key="frame" x="20" y="784" width="58" height="58"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.50223214289999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0bm-IG-bF6" secondAttribute="height" multiplier="1:1" id="Gfl-sU-9Ja"/>
@@ -67,9 +70,12 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="9fC-X3-fnn" kind="presentation" modalTransitionStyle="crossDissolve" id="sXP-rI-ddC"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNM-G6-qLc" userLabel="CameraButton">
-                                <rect key="frame" x="912" y="1234" width="92" height="92"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNM-G6-qLc" userLabel="CameraButton">
+                                <rect key="frame" x="336" y="784" width="58" height="58"/>
                                 <color key="backgroundColor" red="0.037021518170000003" green="0.037021518170000003" blue="0.037021518170000003" alpha="0.49504332979999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" image="camera"/>
@@ -79,11 +85,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="onCameraButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K3X-jY-DdD"/>
+                                    <action selector="onHelpButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XOb-Nz-drb"/>
                                 </connections>
                             </button>
                             <view clipsSubviews="YES" alpha="0.34999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0w-pU-Sz9" customClass="CircledDotView" customModule="Bubbles_App" customModuleProvider="target">
-                                <rect key="frame" x="394" y="664.5" width="236" height="269"/>
+                                <rect key="frame" x="132.66666666666669" y="454.33333333333331" width="148.66666666666669" height="169.66666666666669"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
@@ -98,7 +104,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="bubbleblower" translatesAutoresizingMaskIntoConstraints="NO" id="dWb-3J-mNr">
-                                <rect key="frame" x="370.5" y="658" width="283" height="708"/>
+                                <rect key="frame" x="118.00000000000001" y="450" width="178.33333333333337" height="446"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dWb-3J-mNr" secondAttribute="height" multiplier="283:708" id="xbq-ov-R47"/>
                                 </constraints>
@@ -145,12 +151,89 @@
             </objects>
             <point key="canvasLocation" x="89.855072463768124" y="77.678571428571431"/>
         </scene>
+        <!--Config View Controller-->
+        <scene sceneID="lgZ-CN-MaJ">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="9fC-X3-fnn" customClass="ConfigViewController" customModule="Bubbles_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jup-30-dzI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUq-wp-98W">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tH8-00-KGe">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jh2-9c-Tcm">
+                                <rect key="frame" x="0.0" y="448" width="414" height="448"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="developed at Apple Developer Academy, Curitiba" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqm-Vj-w4F">
+                                        <rect key="frame" x="20" y="385.66666666666663" width="374" height="20.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViN-Ig-weC">
+                                        <rect key="frame" x="20" y="20" width="34" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="onBakcPressed:" destination="9fC-X3-fnn" eventType="touchUpInside" id="Br4-g4-Rga"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Bruno Pastre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7V-Ff-wAc">
+                                        <rect key="frame" x="146" y="344.66666666666663" width="122" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ViN-Ig-weC" firstAttribute="leading" secondItem="Jh2-9c-Tcm" secondAttribute="leading" constant="20" id="19H-QA-54t"/>
+                                    <constraint firstItem="ViN-Ig-weC" firstAttribute="top" secondItem="Jh2-9c-Tcm" secondAttribute="top" constant="20" id="E6B-2d-yFM"/>
+                                    <constraint firstItem="Vqm-Vj-w4F" firstAttribute="leading" secondItem="Jh2-9c-Tcm" secondAttribute="leading" constant="20" id="YUL-lW-3Jh"/>
+                                    <constraint firstItem="n7V-Ff-wAc" firstAttribute="centerX" secondItem="Jh2-9c-Tcm" secondAttribute="centerX" id="Zlh-cy-MyD"/>
+                                    <constraint firstItem="Vqm-Vj-w4F" firstAttribute="top" secondItem="n7V-Ff-wAc" secondAttribute="bottom" constant="20" id="cBW-PA-oa9"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vqm-Vj-w4F" secondAttribute="trailing" constant="20" id="gKW-0L-AJZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vqm-Vj-w4F" secondAttribute="bottom" constant="42" id="jtO-Wn-cHQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="yUq-wp-98W" secondAttribute="bottom" id="A9k-uU-uuB"/>
+                            <constraint firstItem="r90-xO-n50" firstAttribute="trailing" secondItem="yUq-wp-98W" secondAttribute="trailing" id="VzE-kS-REU"/>
+                            <constraint firstItem="r90-xO-n50" firstAttribute="trailing" secondItem="Jh2-9c-Tcm" secondAttribute="trailing" id="Wpb-yR-KUN"/>
+                            <constraint firstItem="Jh2-9c-Tcm" firstAttribute="bottom" secondItem="Jup-30-dzI" secondAttribute="bottom" id="eLf-0r-TdW"/>
+                            <constraint firstItem="Jh2-9c-Tcm" firstAttribute="height" secondItem="Jup-30-dzI" secondAttribute="height" multiplier="0.5" id="f5e-tx-vkY"/>
+                            <constraint firstItem="yUq-wp-98W" firstAttribute="leading" secondItem="r90-xO-n50" secondAttribute="leading" id="kea-Sf-fkL"/>
+                            <constraint firstItem="yUq-wp-98W" firstAttribute="height" secondItem="Jup-30-dzI" secondAttribute="height" id="rXO-MQ-hMe"/>
+                            <constraint firstItem="Jh2-9c-Tcm" firstAttribute="leading" secondItem="r90-xO-n50" secondAttribute="leading" id="vYn-qX-LjM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="r90-xO-n50"/>
+                    </view>
+                    <connections>
+                        <outlet property="modalView" destination="Jh2-9c-Tcm" id="X2M-Kg-YJ3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NVp-Lb-MAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882.60869565217399" y="77.678571428571431"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bubbleblower" width="283" height="708"/>
         <image name="camera" width="16.799999237060547" height="16.799999237060547"/>
         <image name="catavento" width="70" height="70"/>
-        <image name="help" width="52.5" height="52.5"/>
         <image name="settings" width="52.5" height="52.5"/>
     </resources>
 </document>

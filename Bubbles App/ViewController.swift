@@ -84,6 +84,13 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         return true
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        colorPickerView.layer.cornerRadius = colorPickerView.frame.width * 0.5
+        
+    }
+    
     
     func updateAuto(_ sender: UIButton){
         self.isAuto = !self.isAuto
@@ -431,6 +438,10 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         
     }
     
+    
+    @IBAction func onHelpButtonPressed(_ sender: Any) {
+        self.takePic()
+    }
     
     @IBAction func onCameraButtonClicked(_ sender: Any) {
 //        self.onCameraPressed()
