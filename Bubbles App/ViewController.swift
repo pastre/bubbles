@@ -13,6 +13,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     @IBOutlet weak var selectedColorView: CircledDotView!
     @IBOutlet weak var sceneView: ARSCNView!
     
+    @IBOutlet weak var notSupportedView: UIView!
     // Declares a view to display pics
     var photoView: PhotoView!
     
@@ -57,22 +58,25 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         self.blowLabel = UILabel()
         self.hasBlown = false
         super.loadView()
+        if ARConfiguration.isSupported{
+            self.notSupportedView.isHidden = true
 //        sceneView = ARSCNView(frame: CGRect(x: 0.0, y: 0.0, width: 768, height: 1024))
-        photoView = PhotoView(frame: CGRect(x: 0, y: 0, width: 768, height: 1024))
-        
-        initMicrophone() // Inicializa o microfone para detectar o sopro
-        sceneView.delegate = self
-        sceneView.session = session
-        
-        bubbleCounter = 0
-        
-        sceneView.session.delegate = self
-        sceneView.autoenablesDefaultLighting = true
-        
-        photoView.delegate = self
-        self.setupUI()
-        self.setUpSceneView()
-        self.currentState = "blow"
+            photoView = PhotoView(frame: CGRect(x: 0, y: 0, width: 768, height: 1024))
+            
+            initMicrophone() // Inicializa o microfone para detectar o sopro
+            sceneView.delegate = self
+            sceneView.session = session
+            
+            bubbleCounter = 0
+            
+            sceneView.session.delegate = self
+            sceneView.autoenablesDefaultLighting = true
+            
+            photoView.delegate = self
+            self.setupUI()
+            self.setUpSceneView()
+            self.currentState = "blow"
+        }
         
 //        self.view.translatesAutoresizingMaskIntoConstraints = false
         //        self.spawnBubblePopParticle(spawnAt: SCNVector3(0, 0, 0), withColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
@@ -86,8 +90,9 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        colorPickerView.layer.cornerRadius = colorPickerView.frame.width * 0.5
+        if ARConfiguration.isSupported{
+            colorPickerView.layer.cornerRadius = colorPickerView.frame.width * 0.5
+        }
         
     }
     
