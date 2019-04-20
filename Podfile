@@ -7,4 +7,5 @@ target 'Bubbles App' do
 
   # Pods for Bubbles App
   pod 'Firebase/Core'
+  pod 'BlueSocket'
 end

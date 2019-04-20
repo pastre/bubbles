@@ -3,12 +3,110 @@ import ARKit
 import UIKit
 import AVFoundation
 import CoreAudio
+import MultipeerConnectivity
 
-public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, OptionViewDelegate, PhotoDelegate {
+public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, OptionViewDelegate, PhotoDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MCSessionDelegate {
+    public func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        print("############## - Changed state")
+//        session.connectPeer(peerID, withNearbyConnectionData: Data(capacity: 65000))
+        let peerName = peerID.displayName
+        switch state {
+        case .connected:
+            print(peerName, "conectou!")
+            self.peers.append(peerID)
+        case .connecting:
+            print(peerName, "conectando...")
+        default:
+            print(peerName, "deu ruim!!")
+        }
+        print("#########################")
+//        session.connectPeer(peerID, withNearbyConnectionData: "hello".data(using: .utf8)!)
+    }
+    
+    public func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        print("Got data", data)
+        
+        do{
+            if let worldMap = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data) {
+                // Run the session with the received world map.
+                let configuration = ARWorldTrackingConfiguration()
+                configuration.planeDetection = .horizontal
+                configuration.initialWorldMap = worldMap
+                print("Updating anchors")
+                self.arSession.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+                print("Updating anchors")
+            }else{
+                print("Deu ruim, irmao")
+            }
+            // Remember who provided the map for showing UI feedback.
+//            mapProvider = peer
+        }catch let error {
+            print("Error on parsing new world", error)
+        }
+
+    }
+    
+    public func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        print("CCCCCCCCC")
+        self.iStream = stream
+    }
+    
+    public func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        print("DDDDDDDDD")
+    }
+    
+    public func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        print("EEEEEEEEE")
+    }
+    
+    
+    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        print("###############################PARA TUDO RECEBI O INVITE##############################")
+        invitationHandler(true, self.mpSession)
+        print("-----------------------------> O peer", peerID, "Me convidfou para")
+    }
+    
+    
+    public func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        print("Achei um peer!", peerID, info)
+        browser.invitePeer(peerID, to: self.mpSession, withContext: nil, timeout: 10)
+        print("Convidei o peer maluco")
+        peers.append(peerID)
+    }
+    
+    public func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) { // TODO NAO ESTA FUNFANDO para tirar uma conexar
+        print("Perdi um peer:(", peerID)
+        for (i, p) in self.peers.enumerated(){
+            if p == peerID{
+                self.peers.remove(at: i)
+                return
+            }
+        }
+    }
+    
     
     // ARView stuff
-    let session = ARSession()
+    let arSession = ARSession()
 //    var sceneView: ARSCNView!
+    var peers : [MCPeerID] = [MCPeerID]()
+    let clientPeer = MCPeerID(displayName: UIDevice.current.name)
+    lazy var mpBrowser: MCNearbyServiceBrowser = {
+        let mpBrowser = MCNearbyServiceBrowser(peer: self.clientPeer, serviceType: "bubbles")
+        mpBrowser.delegate = self
+        return mpBrowser
+    }()
+    lazy var mpAdvertiser: MCNearbyServiceAdvertiser = {
+        let mpAdvertiser = MCNearbyServiceAdvertiser(peer: self.clientPeer, discoveryInfo: ["chave": "valor"], serviceType: "bubbles")
+        mpAdvertiser.delegate = self
+        return mpAdvertiser
+    }()
+    lazy var mpSession : MCSession = {
+        let session = MCSession(peer: self.clientPeer, securityIdentity: nil, encryptionPreference: .none)
+        session.delegate = self
+        return session
+    }()
+
+    var iStream: InputStream?
     
     @IBOutlet weak var selectedColorView: CircledDotView!
     @IBOutlet weak var sceneView: ARSCNView!
@@ -65,7 +163,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             
             initMicrophone() // Inicializa o microfone para detectar o sopro
             sceneView.delegate = self
-            sceneView.session = session
+            sceneView.session = arSession
             
             bubbleCounter = 0
             
@@ -83,6 +181,10 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         
     }
     
+    deinit {
+        self.mpAdvertiser.stopAdvertisingPeer()
+        self.mpBrowser.stopBrowsingForPeers()
+    }
     
     override open var prefersStatusBarHidden: Bool {
         return true
@@ -92,6 +194,10 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         super.viewDidAppear(animated)
         if ARConfiguration.isSupported{
             colorPickerView.layer.cornerRadius = colorPickerView.frame.width * 0.5
+            self.mpBrowser.startBrowsingForPeers()
+            // COLOCAR UM BOTAO PARA A PESSOA PROCURAR POR SESSOES
+            // Tipo deixar o dispositivo visivel para o bluetooth
+//            self.mpAdvertiser.startAdvertisingPeer()
         }
         
     }
@@ -137,8 +243,13 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     @objc func onCameraPressed() {
         print("Tirando foto na GameScene")
-        let pic = self.sceneView.snapshot()
-        self.goToPhotoView(image: pic)
+        do {
+            try self.mpSession.send("Bora que deu boa!".data(using: .utf8)!, toPeers: self.mpSession.connectedPeers, with: MCSessionSendDataMode.reliable)
+        } catch let error {
+            print("Error sending", error)
+        }
+//        let pic = self.sceneView.snapshot()
+//        self.goToPhotoView(image: pic)
     }
     
     func onOptionChanged(newOption: String) {
@@ -270,7 +381,10 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func spawnBubble(){
-        self.blowLabel.isHidden = true
+        DispatchQueue.main.async {
+            self.blowLabel.isHidden = true
+        }
+        
         guard let frame = self.sceneView.session.currentFrame else {
             return
         }
@@ -305,6 +419,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         })
         
         sceneView.scene.rootNode.addChildNode(newBubble)
+        self.sendWorldMap()
     }
     
     func spawnBubblePopParticle(spawnAt point: SCNVector3, withColor color: UIColor){
@@ -342,6 +457,7 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         if !self.isAuto{
             spawnBubble()
         }
+        handleColorChange(touches)
         
     }
 
@@ -361,15 +477,35 @@ public class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
     }
     
+    
+    func sendWorldMap(){
+//
+//        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+//
+//        // Set the scene to the view
+//        sceneView.scene.rootNode.add
+        self.arSession.getCurrentWorldMap {worldMap, error in
+            do{
+                guard let map = worldMap
+                else { print("Error: \(error!.localizedDescription)"); return }
+                guard let data = try? NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
+                    else { fatalError("can't encode map") }
+                try self.mpSession.send(data, toPeers: self.peers, with: .reliable)
+                print("Sent world map")
+            }catch let error{
+                print("Error on sending wmap", error.localizedDescription)
+            }
+        }
+    }
     @objc func takePic(){
         print("Taking picture")
-        
-        let pic = self.sceneView.snapshot()
-
-        mimicScreenShotFlash()
-        print("Loaded pic")
-        UIImageWriteToSavedPhotosAlbum(pic, nil, nil, nil)
-        print("Saved pic")
+        sendWorldMap()
+//        let pic = self.sceneView.snapshot()
+//
+//        mimicScreenShotFlash()
+//        print("Loaded pic")
+//        UIImageWriteToSavedPhotosAlbum(pic, nil, nil, nil)
+//        print("Saved pic")
     }
     func mimicScreenShotFlash() {
         
